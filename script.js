@@ -78,3 +78,84 @@ let message1 = (login == 'Employee') ? 'Hello' :
   (login == 'Director') ? 'Greetings' :
   (login == '') ? 'No login' :
   '';
+
+  // || OR operator
+
+let hour = 12;
+let isWeekend = true;
+
+if (hour < 10 || hour > 18 || isWeekend) {
+  alert( 'The office is closed.' ); // it is the weekend
+}
+
+// OR checks for first truthy value
+
+alert( 1 || 0 ); // 1 (1 is truthy)
+
+alert( null || 1 ); // 1 (1 is the first truthy value)
+alert( null || 0 || 1 ); // 1 (the first truthy value)
+
+alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+
+// Another Example
+
+let firstName = "";
+let lastName = "";
+let nickName = "SuperCoder";
+
+alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
+
+// && AND operator
+
+let hour = 12;
+let minute = 30;
+
+if (hour == 12 && minute == 30) {
+  alert( 'The time is 12:30' );
+}
+
+// if the first operand is truthy,
+// AND returns the second operand:
+alert( 1 && 0 ); // 0
+alert( 1 && 5 ); // 5
+
+// if the first operand is falsy,
+// AND returns it. The second operand is ignored
+alert( null && 5 ); // null
+alert( 0 && "no matter what" ); // 0
+
+// ! NOT operator
+
+alert( !true ); // false
+alert( !0 ); // true
+
+// !! can convert value to a boolean type
+
+alert( !!"non-empty string" ); // true
+alert( !!null ); // false
+
+alert( Boolean("non-empty string") ); // true
+alert( Boolean(null) ); // false
+
+// Check the login
+
+let userName = prompt("Who's there?", '');
+
+if (userName === 'Admin') {
+
+  let pass = prompt('Password?', '');
+
+  if (pass === 'TheMaster') {
+    alert( 'Welcome!' );
+  } else if (pass === '' || pass === null) {
+    alert( 'Canceled' );
+  } else {
+    alert( 'Wrong password' );
+  }
+
+} else if (userName === '' || userName === null) {
+  alert( 'Canceled' );
+} else {
+  alert( "I don't know you" );
+}
+
