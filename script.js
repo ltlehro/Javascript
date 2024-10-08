@@ -81,10 +81,10 @@ let message1 = (login == 'Employee') ? 'Hello' :
 
   // || OR operator
 
-let hour = 12;
+let hour1 = 12;
 let isWeekend = true;
 
-if (hour < 10 || hour > 18 || isWeekend) {
+if (hour1 < 10 || hour1 > 18 || isWeekend) {
   alert( 'The office is closed.' ); // it is the weekend
 }
 
@@ -107,10 +107,10 @@ alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
 
 // && AND operator
 
-let hour = 12;
+let hour2 = 12;
 let minute = 30;
 
-if (hour == 12 && minute == 30) {
+if (hour2 == 12 && minute == 30) {
   alert( 'The time is 12:30' );
 }
 
@@ -159,3 +159,25 @@ if (userName === 'Admin') {
   alert( "I don't know you" );
 }
 
+// Nullish Coalescing Operator
+
+let firstName1 = null;
+let lastName1 = null;
+let nickName1 = "Supercoder";
+
+// shows the first defined value:
+alert(firstName1 ?? lastName1 ?? nickName1 ?? "Anonymous"); // Supercoder
+
+// Comparison with OR
+let firstName2 = null;
+let lastName2 = null;
+let nickName2 = "Supercoder";
+
+// shows the first truthy value:
+alert(firstName2 || lastName2|| nickName2 || "Anonymous"); // Supercoder
+
+// Another Example
+let height = 0;
+
+alert(height || 100); // 100
+alert(height ?? 100); // 0
