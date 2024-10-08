@@ -1,17 +1,17 @@
 // postfx and prefix
 
-let a = 1, b = 1;
+let x = 1, y = 1;
 
-alert( ++a ); // 2, prefix form returns the new value
-alert( b++ ); // 1, postfix form returns the old value
+alert( ++x ); // 2, prefix form returns the new value
+alert( y++ ); // 1, postfix form returns the old value
 
-alert( a ); // 2, incremented once
-alert( b ); // 2, incremented once
+alert( x ); // 2, incremented once
+alert( y ); // 2, incremented once
 
 let counter = 1;
 alert( 2 * ++counter ); // 4
 
-let counter = 1;
+counter = 1;
 alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
 
 // Chaining Assignments
@@ -48,3 +48,33 @@ alert( '01' == 1 ); // true, string '01' becomes a number 1
 alert( 0 === false ); // false, because the types are different
 alert( null === undefined ); // false
 alert( null == undefined ); // true, not a strict equality check
+
+// Multiple if-else
+
+if (age < 3) {
+  message = 'Hi, baby!';
+} else if (age < 18) {
+  message = 'Hello!';
+} else if (age < 100) {
+  message = 'Greetings!';
+} else {
+  message = 'What an unusual age!';
+}
+
+// Conditional Operatoe
+
+let age = prompt('age?', 18);
+
+let message = (age < 3) ? 'Hi, baby!' :
+  (age < 18) ? 'Hello!' :
+  (age < 100) ? 'Greetings!' :
+  'What an unusual age!';
+
+alert( message );
+
+let result = (a + b < 4) ? 'Below' : 'Over';
+
+let message1 = (login == 'Employee') ? 'Hello' :
+  (login == 'Director') ? 'Greetings' :
+  (login == '') ? 'No login' :
+  '';
