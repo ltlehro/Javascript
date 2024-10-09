@@ -276,4 +276,28 @@ let user = {
   user.sizes.width = 60;    // change a property from one place
   alert(clone.sizes.width); // 50, not related
 
+  // Interlinked objects
+  // resulting memory structure will be a interconnected tree
+
+  function marry(man, woman) {
+    woman.husband = man;
+    man.wife = woman;
+  
+    return {
+      father: man,
+      mother: woman
+    }
+  }
+  
+  let family = marry({
+    name: "John"
+  }, {
+    name: "Ann"
+  });
+
+  // removing relations from the tree
+
+  delete family.father;
+  delete family.mother.husband;
+
   
