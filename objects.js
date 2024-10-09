@@ -153,6 +153,127 @@ function multiplyNumeric(obj) {
     }
   }
 
+// Object referencing or copying
 
+let user = { name: "John" };
 
+let admin = user; // copy the reference
 
+// Changing name by reference
+
+let user = { name: 'John' };
+
+let admin = user;
+
+admin.name = 'Pete'; // changed by the "admin" reference
+
+alert(user.name); // 'Pete', changes are seen from the "user" reference
+
+// independent objects cannot be equal
+
+let a = {};
+let b = {}; // two independent objects
+
+alert( a == b ); // false
+
+// same objects can be equal 
+
+let a = {};
+let b = a; // copy the reference
+
+alert( a == b ); // true, both variables reference the same object
+alert( a === b ); // true
+
+// const objects can be modified because its still referencing to same object
+
+const user = {
+    name: "John"
+  };
+  
+  user.name = "Pete"; // (*)
+  
+  alert(user.name); // Pete
+
+// merging or cloning two objects
+
+let user = {
+    name: "John",
+    age: 30
+  };
+  
+  let clone = {}; // the new empty object
+  
+  // let's copy all user properties into it
+  for (let key in user) {
+    clone[key] = user[key];
+  }
+  
+  // now clone is a fully independent object with the same content
+  clone.name = "Pete"; // changed the data in it
+  
+  alert( user.name ); // still John in the original object
+
+  // using object.assign to copy props
+
+let user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: "John", canView: true, canEdit: true }
+alert(user.name); // John
+alert(user.canView); // true
+alert(user.canEdit); // true
+
+// object cloning using object.assign
+
+let user = {
+    name: "John",
+    age: 30
+  };
+  
+  let clone = Object.assign({}, user);
+  
+  alert(clone.name); // John
+  alert(clone.age); // 30
+
+  // Nested Cloning (error)
+
+  let user = {
+    name: "John",
+    sizes: {
+      height: 182,
+      width: 50
+    }
+  };
+  
+  let clone = Object.assign({}, user);
+  
+  alert( user.sizes === clone.sizes ); // true, same object
+  
+  // user and clone share sizes
+  user.sizes.width = 60;    // change a property from one place
+  alert(clone.sizes.width); // 60, get the result from the other one
+
+  // Structured Clone (for individual nested properties)
+
+  let user = {
+    name: "John",
+    sizes: {
+      height: 182,
+      width: 50
+    }
+  };
+  
+  let clone = structuredClone(user);
+  
+  alert( user.sizes === clone.sizes ); // false, different objects
+  
+  // user and clone are totally unrelated now
+  user.sizes.width = 60;    // change a property from one place
+  alert(clone.sizes.width); // 50, not related
+
+  
