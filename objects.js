@@ -300,4 +300,123 @@ let user = {
   delete family.father;
   delete family.mother.husband;
 
+  // Object Methods
+
+  user = {
+    sayHi() { // same as "sayHi: function(){...}"
+      alert("Hello");
+    }
+  };
+
+  // This keyword, used to access the object in method
+
+  let user = {
+    name: "John",
+    age: 30,
   
+    sayHi() {
+      // "this" is the "current object"
+      alert(this.name);
+    }
+  
+  };
+  
+  user.sayHi(); // John
+
+  // "this" is not bound, can be used in any functions that are not methods
+
+  let user = { name: "John" };
+  let admin = { name: "Admin" };
+
+  function sayHi() {
+    alert( this.name );
+  }
+
+  // use the same function in two objects
+  user.f = sayHi;
+  admin.f = sayHi;
+
+  // these calls have different this
+  // "this" inside the function is the object "before the dot"
+  user.f(); // John  (this == user)
+  admin.f(); // Admin  (this == admin)
+
+  admin['f'](); // Admin (dot or square brackets access the method – doesn't matter
+
+  // calling this without object prop will be undefined
+
+  function sayHi() {
+    alert(this);
+  }
+  
+  sayHi(); // undefined
+
+  // Arrow functions don't have their own "this"
+
+  let user = {
+    firstName: "Zayn",
+    sayHi() {
+      let arrow = () => alert(this.firstName);
+      arrow();
+    }
+  };
+  
+  user.sayHi(); // Zayn
+
+  // returning this from outer function
+
+  function makeUser() {
+    return {
+      name: "Zayn",
+      ref() {
+        return this;
+      }
+    };
+  }
+  
+  let user = makeUser();
+  
+  alert( user.ref().name ); // Zayn
+
+  // Creating a calculator using methods
+
+  let calculator = {
+    sum() {
+      return this.a + this.b;
+    },
+  
+    mul() {
+      return this.a * this.b;
+    },
+  
+    read() {
+      this.a = +prompt('a?', 0);
+      this.b = +prompt('b?', 0);
+    }
+  };
+  
+  calculator.read();
+  alert( calculator.sum() );
+  alert( calculator.mul() );\
+
+  // Chaining (Ladder Problem)
+
+  let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep() {
+      alert( this.step );
+      return this;
+    }
+  };
+  
+  ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+
+
