@@ -571,5 +571,44 @@ accumulator.read()
 
 alert(accumulator.value) // 4
 
+// error in accessing object property that does not exist
+
+let user = {}; // a user without "address" property
+
+alert(user.address.street); // Error!
+
+// optional chaining
+
+let user = {}; // user has no address
+
+alert( user?.address?.street ); // undefined (no error)
+
+// for document based javascript
+
+let html = document.querySelector('.elem')?.innerHTML; // will be undefined, if there's no element
+
+// it even works if user does not exists, it simplt returns undefined instead of error
+
+let user = null;
+
+alert( user?.address ); // undefined
+alert( user?.address.street ); // undefined
+
+// optional chaining should not be over-used
+// optional chaining short circuits the evaluation
+
+let user = null;
+let x = 0;
+
+user?.sayHi(x++); // no "user", so the execution doesn't reach sayHi call and x++
+
+alert(x); // 0, value not incremented
+
+// optional chaining has no use on left side of assignment
+
+let user = null;
+
+user?.name = "John"; // Error, doesn't work
+// because it evaluates to: undefined = "John"
 
 
