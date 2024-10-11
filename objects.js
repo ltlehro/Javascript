@@ -611,4 +611,95 @@ let user = null;
 user?.name = "John"; // Error, doesn't work
 // because it evaluates to: undefined = "John"
 
+// symbol (unique identifier)
+
+let id1 = Symbol("id");
+let id2 = Symbol("id");
+
+alert(id1 == id2); // false
+
+// they don't auto-convert into strings
+
+let id = Symbol("id");
+alert(id); // TypeError: Cannot convert a Symbol value to a string
+
+// we have to manually convert it into a string
+
+let id = Symbol("id");
+alert(id.toString()); // Symbol(id), now it works
+
+// symbols can addd hidden properties to objects
+
+let user = { // belongs to another code
+  name: "John"
+};
+
+let id = Symbol("id");
+
+user[id] = 1;
+
+alert( user[id] ); // we can access the data using the symbol as the key
+
+// conflicting id's if we use direct strings instead of symbols
+
+let user = { name: "John" };
+
+// Our script uses "id" property
+user.id = "Our id value";
+
+// ...Another script also wants "id" for its purposes...
+
+user.id = "Their id value"
+// Boom! overwritten by another script!
+
+// we can use Symbol to avoid this conflict
+
+// symbols are skipped in for...in loop
+
+let id = Symbol("id");
+let user = {
+  name: "John",
+  age: 30,
+  [id]: 123
+};
+
+for (let key in user) alert(key); // name, age (no symbols)
+
+// the direct access by the symbol works
+alert( "Direct: " + user[id] ); // Direct: 123
+
+// object assign copies both string and symbolic properties
+
+let id = Symbol("id");
+let user = {
+  [id]: 123
+};
+
+let clone = Object.assign({}, user);
+
+alert( clone[id] ); // 123
+
+// global symbols (using symbol.for)
+
+// read from the global registry
+let id = Symbol.for("id"); // if the symbol did not exist, it is created
+
+// read it again (maybe from another part of the code)
+let idAgain = Symbol.for("id");
+
+// the same symbol
+alert( id === idAgain ); // true
+
+// symbol.keyfor does not work for local symbols
+
+let globalSymbol = Symbol.for("name");
+let localSymbol = Symbol("name");
+
+alert( Symbol.keyFor(globalSymbol) ); // name, global symbol
+alert( Symbol.keyFor(localSymbol) ); // undefined, not global
+
+alert( localSymbol.description ); // name
+
+
+
 
