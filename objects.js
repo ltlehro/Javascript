@@ -338,6 +338,7 @@ let user = {
 
   // these calls have different this
   // "this" inside the function is the object "before the dot"
+
   user.f(); // John  (this == user)
   admin.f(); // Admin  (this == admin)
 
@@ -378,7 +379,7 @@ let user = {
   
   alert( user.ref().name ); // Zayn
 
-  // Creating a calculator using methods
+  // creating a calculator using methods
 
   let calculator = {
     sum() {
@@ -418,5 +419,157 @@ let user = {
   };
   
   ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+
+  // Constructor function
+  // uses 'this' to initialize multiple objects
+  // first letter is capital for constructor functions
+
+  function User(name) {
+    this.name = name;
+    this.isAdmin = false;
+  }
+  
+  let user = new User("Jack");
+  
+  alert(user.name); // Jack
+  alert(user.isAdmin); // false
+
+  // logic behind constructor function
+
+  function User(name) {
+
+    // this = {};  (implicitly)
+  
+    // add properties to this
+
+    this.name = name;
+    this.isAdmin = false;
+  
+    // return this;  (implicitly)
+  }
+
+  // let user = new User("Jack") gives same result as
+
+  let user = {
+    name: "Jack",
+    isAdmin: false
+  };
+
+  // create a function and immediately call it with new
+
+  let user = new function() {
+  this.name = "John";
+  this.isAdmin = false;
+
+  // ...other code for user creation
+  // maybe complex logic and statements
+  // local variables etc
+};
+
+// automate new object creation if not called with 'new'
+
+function User(name) {
+  if (!new.target) { // if you run me without new
+    return new User(name); // ...I will add new for you
+  }
+
+  this.name = name;
+}
+
+let john = User("John"); // redirects call to new User
+alert(john.name); // John
+
+/* not a good thing to use everywhere, because
+omitting new makes it a bit less obvious what’s going on.
+With 'new' we all know that the new object is being created.*/
+
+// constructors do not have a return statement because it returns object instead of this
+// for instance 
+
+function BigUser() {
+
+  this.name = "John";
+
+  return { name: "Godzilla" };  // returns this object
+}
+
+alert( new BigUser().name );  // Godzilla, got that object
+
+// omitting parantheses
+
+let user = new User; // no parentheses
+// same as
+let user = new User();
+
+// flexibility of constructor functions
+
+function User(name) {
+  this.name = name;
+
+  this.sayHi = function() {
+    alert( "My name is: " + this.name );
+  };
+}
+
+let john = new User("John");
+
+john.sayHi(); // My name is: John
+
+/*
+john = {
+   name: "John",
+   sayHi: function() { ... }
+}
+*/
+
+// two functions, one object
+
+let obj = {};
+
+function A() { return obj; }
+function B() { return obj; }
+
+alert( new A() == new B() ); // true
+
+// constructor function calculator
+
+function Calculator() {
+
+  this.read = function() {
+    this.a = +prompt('a?', 0);
+    this.b = +prompt('b?', 0);
+  };
+
+  this.sum = function() {
+    return this.a + this.b;
+  };
+
+  this.mul = function() {
+    return this.a * this.b;
+  };
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
+// constructor function accumulator
+
+function Accumulator(startingValue) {
+  this.value= startingValue
+
+  this.read= function() {
+    this.value += +prompt('how much to add?', 0)
+  }
+}
+
+let accumulator = new Accumulator(2);
+accumulator.read()
+accumulator.read()
+
+alert(accumulator.value) // 4
+
 
 
