@@ -666,6 +666,7 @@ let user = {
 for (let key in user) alert(key); // name, age (no symbols)
 
 // the direct access by the symbol works
+
 alert( "Direct: " + user[id] ); // Direct: 123
 
 // object assign copies both string and symbolic properties
@@ -715,7 +716,3 @@ let user = {
 alert(user); // hint: string -> {name: "John"}
 alert(+user); // hint: number -> 1000
 alert(user + 500); // hint: default -> 1500
-
-
-
-
