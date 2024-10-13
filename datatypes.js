@@ -227,3 +227,40 @@ alert( str );
 // Output:
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
+
+
+// function for converting first letter of string to uppercase
+
+function ucFirst(str) {
+    if (!str) return str;
+  
+    return str[0].toUpperCase() + str.slice(1);
+  }
+  
+  alert( ucFirst("john") ); // John
+
+  // function to check for a particular substring in string
+
+  function checkSpam(str) {
+    let lowerStr = str.toLowerCase();
+  
+    return lowerStr.includes('javascript') || lowerStr.includes('dev');
+  }
+  
+  alert( checkSpam('javascript fundamentals') );
+  alert( checkSpam('react dev') );
+  alert( checkSpam("innocent rabbit") );
+
+  // function to replace extra letters in a string to "..." using truncate
+
+  function truncate(str, maxlength) {
+    return (str.length > maxlength) ?
+      str.slice(0, maxlength - 1) + '…' : str;
+  }
+
+  // extract numeric value from a currency symbol value
+
+  function extractCurrencyValue(str) {
+    return +str.slice(1);
+  }
+
