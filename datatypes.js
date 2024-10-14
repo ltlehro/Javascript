@@ -237,30 +237,187 @@ function ucFirst(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
   
-  alert( ucFirst("john") ); // John
+alert( ucFirst("john") ); // John
 
-  // function to check for a particular substring in string
+// function to check for a particular substring in string
 
-  function checkSpam(str) {
-    let lowerStr = str.toLowerCase();
-  
-    return lowerStr.includes('javascript') || lowerStr.includes('dev');
-  }
-  
-  alert( checkSpam('javascript fundamentals') );
-  alert( checkSpam('react dev') );
-  alert( checkSpam("innocent rabbit") );
+function checkSpam(str) {
+let lowerStr = str.toLowerCase(); // for the search to be case-insensitive
 
-  // function to replace extra letters in a string to "..." using truncate
+return lowerStr.includes('javascript') || lowerStr.includes('dev');
+}
 
-  function truncate(str, maxlength) {
-    return (str.length > maxlength) ?
-      str.slice(0, maxlength - 1) + '…' : str;
-  }
+alert( checkSpam('javascript fundamentals') );
+alert( checkSpam('react dev') );
+alert( checkSpam("innocent rabbit") );
 
-  // extract numeric value from a currency symbol value
+// function to replace extra letters in a string to "..." using truncate
 
-  function extractCurrencyValue(str) {
-    return +str.slice(1);
-  }
+function truncate(str, maxlength) {
+return (str.length > maxlength) ?
+    str.slice(0, maxlength - 1) + '…' : str;
+}
+
+// extract numeric value from a currency symbol value
+
+function extractCurrencyValue(str) {
+return +str.slice(1);
+}
+
+// declaring arrays
+
+let arr = new Array();
+let arr = [];
+
+// initializing arrays
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+// accessing array elements by index
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits[0] ); // Apple
+alert( fruits[1] ); // Orange
+alert( fruits[2] ); // Plum
+
+// counting array elements using .length method
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits.length ); // 3
+
+// accessing the whole array
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits ); // Apple,Orange,Plum
+
+// arrays can store elements of any type
+
+// mix of values
+let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
+
+// get the object at index 1 and then show its name
+alert( arr[1].name ); // John
+
+// get the function at index 3 and run it
+arr[3](); // hello
+
+// trailing comma style
+
+let fruits = [
+    "Apple",
+    "Orange",
+    "Plum",
+  ];
+
+// accessing the right array element using -1, as arrays start from index 0
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits[fruits.length-1] ); // Plum
+
+// using arr.at(i)
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+// same as fruits[fruits.length-1]
+alert( fruits.at(-1) ); // Plum
+
+// array methods pop/push, shift/unshift
+
+// pop extracts the last element of the array and returns it
+
+let fruits = ["Apple", "Orange", "Pear"];
+
+alert( fruits.pop() ); // remove "Pear" and alert it
+
+alert( fruits ); // Apple, Orange
+
+// fruits.pop() and fruits.at(-1) return the last element of the array, but fruits.pop() also modifies the array by removing it
+
+// pushing an element onto the array (stack)
+
+let fruits = ["Apple", "Orange"];
+
+fruits.push("Pear");
+
+alert( fruits ); // Apple, Orange, Pear
+
+// shift (queue method) removes the first element (fifo) from the queue
+
+let fruits = ["Apple", "Orange", "Pear"];
+
+alert( fruits.shift() ); // remove Apple and alert it
+
+alert( fruits ); // Orange, Pear
+
+// unshift adds the element to the beginning of the array
+
+let fruits = ["Orange", "Pear"];
+
+fruits.unshift('Apple');
+
+alert( fruits ); // Apple, Orange, Pear
+
+// multiple elements can also be pushed and shifted from the arrays
+
+let fruits = ["Apple"];
+
+fruits.push("Orange", "Peach");
+fruits.unshift("Pineapple", "Lemon");
+
+// ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
+alert( fruits );
+
+// as arrays are also objects, they follow copy by reference
+
+let fruits = ["Banana"]
+
+let arr = fruits; // copy by reference (two variables reference the same array)
+
+alert( arr === fruits ); // true
+
+arr.push("Pear"); // modify the array by reference
+
+alert( fruits ); // Banana, Pear - 2 items now
+
+/* ways to misuse an array
+
+Add a non-numeric property like arr.test = 5.
+Make holes, like: add arr[0] and then arr[1000] (and nothing between them)
+Fill the array in the reverse order, like arr[1000], arr[999] and so on */
+
+// accessing array elements using for loop
+
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let i = 0; i < arr.length; i++) {
+  alert( arr[i] );
+}
+
+// using for..of loop on arrays
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+// iterates over array elements
+for (let fruit of fruits) {
+  alert( fruit );
+}
+
+// using for..in on arrays
+// for..in iterates over all properties, not only the numeric ones
+// for..in loop is optimized for generic objects, not arrays, and thus is 10-100 times slower
+
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let key in arr) {
+  alert( arr[key] ); // Apple, Orange, Pear
+}
+
+
+
+
+
 
