@@ -237,30 +237,91 @@ function ucFirst(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
   
-  alert( ucFirst("john") ); // John
+alert( ucFirst("john") ); // John
 
-  // function to check for a particular substring in string
+// function to check for a particular substring in string
 
-  function checkSpam(str) {
-    let lowerStr = str.toLowerCase();
-  
-    return lowerStr.includes('javascript') || lowerStr.includes('dev');
-  }
-  
-  alert( checkSpam('javascript fundamentals') );
-  alert( checkSpam('react dev') );
-  alert( checkSpam("innocent rabbit") );
+function checkSpam(str) {
+let lowerStr = str.toLowerCase(); // for the search to be case-insensitive
 
-  // function to replace extra letters in a string to "..." using truncate
+return lowerStr.includes('javascript') || lowerStr.includes('dev');
+}
 
-  function truncate(str, maxlength) {
-    return (str.length > maxlength) ?
-      str.slice(0, maxlength - 1) + '…' : str;
-  }
+alert( checkSpam('javascript fundamentals') );
+alert( checkSpam('react dev') );
+alert( checkSpam("innocent rabbit") );
 
-  // extract numeric value from a currency symbol value
+// function to replace extra letters in a string to "..." using truncate
 
-  function extractCurrencyValue(str) {
-    return +str.slice(1);
-  }
+function truncate(str, maxlength) {
+return (str.length > maxlength) ?
+    str.slice(0, maxlength - 1) + '…' : str;
+}
+
+// extract numeric value from a currency symbol value
+
+function extractCurrencyValue(str) {
+return +str.slice(1);
+}
+
+// declaring arrays
+
+let arr = new Array();
+let arr = [];
+
+// initializing arrays
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+// accessing array elements by index
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits[0] ); // Apple
+alert( fruits[1] ); // Orange
+alert( fruits[2] ); // Plum
+
+// counting array elements using .length method
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits.length ); // 3
+
+// accessing the whole array
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits ); // Apple,Orange,Plum
+
+// arrays can store elements of any type
+
+// mix of values
+let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
+
+// get the object at index 1 and then show its name
+alert( arr[1].name ); // John
+
+// get the function at index 3 and run it
+arr[3](); // hello
+
+// trailing comma style
+
+let fruits = [
+    "Apple",
+    "Orange",
+    "Plum",
+  ];
+
+// accessing the right array element using -1, as arrays start from index 0
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits[fruits.length-1] ); // Plum
+
+// using arr.at(i)
+
+let fruits = ["Apple", "Orange", "Plum"];
+
+// same as fruits[fruits.length-1]
+alert( fruits.at(-1) ); // Plum
 
