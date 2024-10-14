@@ -335,7 +335,8 @@ alert( fruits.pop() ); // remove "Pear" and alert it
 
 alert( fruits ); // Apple, Orange
 
-// fruits.pop() and fruits.at(-1) return the last element of the array, but fruits.pop() also modifies the array by removing it
+/* fruits.pop() and fruits.at(-1) return the last element of
+the array, but fruits.pop() also modifies the array by removing it */
 
 // pushing an element onto the array (stack)
 
@@ -416,8 +417,152 @@ for (let key in arr) {
   alert( arr[key] ); // Apple, Orange, Pear
 }
 
+// truncate array using .length
 
+let arr = [1, 2, 3, 4, 5];
 
+arr.length = 2; // truncate to 2 elements
+alert( arr ); // [1, 2]
 
+arr.length = 5; // return length back
+alert( arr[3] ); // undefined: the values do not return
 
+// simplest way to clear the array is arr.length = 0
 
+// second method for initialization
+
+let arr = new Array(2); // will it create an array of [2] ?
+
+alert( arr[0] ); // undefined! no elements.
+
+alert( arr.length ); // length 2
+
+// oops, that's how one can shoot themselves in the foot
+
+// multi-dimensional arrays, arrays can store elements that are also arrays
+
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ];
+  
+alert( matrix[0][1] ); // 2, the second value of the first inner array
+
+/*Arrays do not have Symbol.toPrimitive, neither a viable valueOf,
+they implement only toString conversion, so here [] becomes an empty
+string, [1] becomes "1" and [1,2] becomes "1,2" */
+
+alert( [] + 1 ); // "1"
+alert( [1] + 1 ); // "11"
+alert( [1,2] + 1 ); // "1,21"
+
+alert( "" + 1 ); // "1"
+alert( "1" + 1 ); // "11"
+alert( "1,2" + 1 ); // "1,21"
+
+// array [] gets converted to primitive for the purpose of comparison and becomes an empty string ''
+
+alert( 0 == [] ); // true
+alert('0' == [] ); // false
+
+// after [] was converted to ''
+alert( 0 == '' ); // true, as '' becomes converted to number 0
+
+alert('0' == '' ); // false, no type conversion, different strings
+
+// object referencing in arrays
+
+let fruits = ["Apples", "Pear", "Orange"];
+
+// push a new value into the "copy"
+let shoppingCart = fruits;
+shoppingCart.push("Banana");
+
+alert( fruits.length ); // 4, because both variables reference to same object (array)
+
+// pushing a function onto the array
+
+let arr = ["a", "b"];
+
+arr.push(function() {
+  alert( this );
+})
+
+/* we have a call of the function arr[2] as an object method.
+Naturally, it receives this referencing the object arr and outputs the array */
+
+arr[2](); // a,b,function(){...}
+
+// creating a function that prompts for array elements and returns the array sum
+
+function sumInput() {
+
+    let numbers = [];
+  
+    while (true) {
+  
+      let value = prompt("A number please?", 0);
+  
+      // should we cancel?
+      if (value === "" || value === null || !isFinite(value)) break;
+  
+      numbers.push(+value);
+    }
+  
+    let sum = 0;
+    for (let number of numbers) {
+      sum += number;
+    }
+    return sum;
+  }
+  
+  alert( sumInput() );
+
+// a maximal sub-array
+
+function getMaxSubSum(arr) {
+    let maxSum = 0; // if we take no elements, zero will be returned
+  
+    for (let i = 0; i < arr.length; i++) {  // O(n)
+      let sumFixedStart = 0;
+      for (let j = i; j < arr.length; j++) { // O(n)
+        sumFixedStart += arr[j];
+        maxSum = Math.max(maxSum, sumFixedStart);
+      }
+    }
+  
+    return maxSum;
+  }
+
+  // this method runs in O(n^2) because if we double the array size it will take 4x longer time
+  
+  alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+  alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+  alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+  alert( getMaxSubSum([1, 2, 3]) ); // 6
+  alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+
+// fastest solution
+
+function getMaxSubSum(arr) {
+    let maxSum = 0;
+    let partialSum = 0;
+  
+    for (let item of arr) { // for each item of arr
+      partialSum += item; // add it to partialSum
+      maxSum = Math.max(maxSum, partialSum); // remember the maximum
+      if (partialSum < 0) partialSum = 0; // zero if negative
+    }
+  
+    return maxSum;
+  }
+
+  // this algorithm requires exactly 1 array pass, so the time complexity is O(n)
+  
+  alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+  alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+  alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+  alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+  alert( getMaxSubSum([1, 2, 3]) ); // 6
+  alert( getMaxSubSum([-1, -2, -3]) ); // 0
