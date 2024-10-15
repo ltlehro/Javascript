@@ -669,6 +669,55 @@ let fruits = ['Apple', 'Orange', 'Apple']
 alert( fruits.indexOf('Apple') ); // 0 (first Apple)
 alert( fruits.lastIndexOf('Apple') ); // 2 (last Apple)
 
+// find method finds an object with a specific condition
+
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+let user = users.find(item => item.id == 1);
+
+alert(user.name); // John
+
+// arr.findLastIndex method is like findIndex, but searches from right to left, similar to lastIndexOf
+
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"},
+  {id: 4, name: "John"}
+];
+
+// Find the index of the first John
+alert(users.findIndex(user => user.name == 'John')); // 0
+
+// Find the index of the last John
+alert(users.findLastIndex(user => user.name == 'John')); // 3
+
+// filter function
+
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+// returns array of the first two users
+let someUsers = users.filter(item => item.id < 3);
+
+alert(someUsers.length); // 2
+
+// arr.map method calls the function for each element of the array and returns the array of results
+
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+
+alert(lengths); // 5,7,6
+
+
+
+
 
 
 
