@@ -715,6 +715,84 @@ let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
 
 alert(lengths); // 5,7,6
 
+// arr.sort
+
+let arr = [ 1, 2, 15 ];
+
+// the method reorders the content of arr
+arr.sort();
+
+alert( arr );  // 1, 15, 2
+
+// items are sorted as strings by default
+
+// to sort as numbers
+
+function compareNumeric(a, b) {
+  if (a > b) return 1; // checks if first number is greater than the later and returns true if it is
+  if (a == b) return 0; // if both numbers are equal, then skip the execution
+  if (a < b) return -1; // if first is smaller than the later, then dont swap
+}
+
+let arr = [ 1, 2, 15 ];
+
+arr.sort(compareNumeric);
+
+alert(arr);  // 1, 2, 15
+
+// for neater code, use arrow functions
+
+arr.sort( (a, b) => a - b );
+
+// using localeCompare
+
+let countries = ['Österreich', 'Andorra', 'Vietnam'];
+
+alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
+
+alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam (correct!)
+
+// arr.reverse
+
+let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+
+alert( arr ); // 5,4,3,2,1
+
+// split and join
+
+let names = 'Bilbo, Gandalf, Nazgul';
+
+let arr = names.split(', ');
+
+for (let name of arr) {
+  alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
+}
+
+// giving a numeric argument to split
+
+let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+
+alert(arr); // Bilbo, Gandalf
+
+// The call to split(s) with an empty s would split the string into an array of letters
+
+let str = "test";
+
+alert( str.split('') ); // t,e,s,t
+
+// The call arr.join(glue) does the reverse to split. It creates a string of arr items joined by glue between them
+
+let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+
+let str = arr.join(';'); // glue the array into a string using ;
+
+alert( str ); // Bilbo;Gandalf;Nazgul
+
+
+
+
+
 
 
 
