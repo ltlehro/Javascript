@@ -1073,7 +1073,6 @@ while (true) {
   alert(result.value); // outputs characters one by one
 }
 
-
 // array.from method
 
 let arrayLike = {
@@ -1091,3 +1090,25 @@ alert(arr.pop()); // World (method works)
 let arr = Array.from(range, num => num * num);
 
 alert(arr); // 1,4,9,16,25
+
+// Map allows keys of any type
+
+let map = new Map();
+
+map.set('1',"str1"); // a string key
+map.set(1,"str2"); // a numeric key
+map.set(true, "bool1"); // a boolean key
+
+alert( map.get(1)   ); // 'num1'
+alert( map.get('1') ); // 'str1'
+
+alert( map.size ); // 3
+
+// As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+
+// Every map.set call returns the map itself, so we can “chain” the calls:
+
+map.set('1', 'str1')
+.set(1, 'num1')
+.set(true, 'bool1');
+
