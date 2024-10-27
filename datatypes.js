@@ -1112,3 +1112,75 @@ map.set('1', 'str1')
 .set(1, 'num1')
 .set(true, 'bool1');
 
+// iterations with map
+
+let recipeMap = new Map([
+  ['cucumber', 500],
+  ['tomatoes', 350],
+  ['onion',    50]
+]);
+
+// iterate over keys (vegetables)
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
+}
+
+// iterate over values (amounts)
+for (let amount of recipeMap.values()) {
+  alert(amount); // 500, 350, 50
+}
+
+// iterate over [key, value] entries
+for (let entry of recipeMap) { // the same as of recipeMap.entries()
+  alert(entry); // cucumber,500 (and so on)
+}
+
+// The iteration goes in the same order as the values were inserted. Map preserves this order, unlike a regular Object.
+
+// Map has a built-in forEach method, similar to Array:
+// runs the function for each (key, value) pair
+
+recipeMap.forEach( (value, key, map) => {
+  alert(`${key}: ${value}`); // cucumber: 500 etc
+});
+
+// creating map from object
+
+let obj = {
+  name: "John",
+  age: 30
+};
+
+let map = new Map(Object.entries(obj));
+
+alert( map.get('name') ); // John
+
+// Object.entries returns the array of key/value pairs: [ ["name","John"], ["age", 30] ]
+
+
+// object.fromEntries creates an object from given (key,value) pair
+
+let prices = Object.fromEntries([
+  ['banana', 1],
+  ['orange', 2],
+  ['meat', 4]
+]);
+
+// now prices = { banana: 1, orange: 2, meat: 4 }
+
+alert(prices.orange); // 2
+
+// we store the data in a Map, but we need to pass it to a 3rd-party code that expects a plain object
+
+let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+
+// done!
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange); // 2
+
