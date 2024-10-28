@@ -735,3 +735,41 @@ function aclean(arr) {
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
 alert( aclean(arr) );
+
+// spliting logic into multiple lines
+
+let sorted = word // PAN
+  .toLowerCase() // pan
+  .split('') // ['p','a','n']
+  .sort() // ['a','n','p']
+  .join(''); // anp
+
+
+// using array instead of map, beause keys are strings
+
+function aclean(arr) {
+  let obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let sorted = arr[i].toLowerCase().split("").sort().join("");
+    obj[sorted] = arr[i];
+  }
+
+  return Object.values(obj);
+}
+
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+alert( aclean(arr) );
+
+// get an array of map.keys() in a variable and then apply array-specific methods to it, e.g. .push
+
+let map = new Map();
+
+map.set("name", "John");
+
+let keys = Array.from(map.keys());
+
+keys.push("more");
+
+alert(keys); // name, more
