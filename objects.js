@@ -650,6 +650,7 @@ user.id = "Our id value";
 // ...Another script also wants "id" for its purposes...
 
 user.id = "Their id value"
+
 // Boom! overwritten by another script!
 
 // we can use Symbol to avoid this conflict
@@ -716,3 +717,21 @@ let user = {
 alert(user); // hint: string -> {name: "John"}
 alert(+user); // hint: number -> 1000
 alert(user + 500); // hint: default -> 1500
+
+// filter anagrams using map
+
+function aclean(arr) {
+  let map = new Map();
+
+  for (let word of arr) {
+    // split the word by letters, sort them and join back
+    let sorted = word.toLowerCase().split('').sort().join(''); // (*)
+    map.set(sorted, word);
+  }
+
+  return Array.from(map.values());
+}
+
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+alert( aclean(arr) );
