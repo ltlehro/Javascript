@@ -1221,5 +1221,25 @@ set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 
+// Weakmap
 
+// The difference between Map and WeakMap is that keys must be objects, not primitive values
+
+let weakMap = new WeakMap();
+
+let obj = {};
+
+weakMap.set(obj, "ok"); // works fine (object key)
+
+// can't use a string as the key
+weakMap.set("test", "Whoops"); // Error, because "test" is not an object
+
+// f we use an object as the key in it, and there are no other references to that object – it will be removed from memory (and from the map) automaticallylet john = { name: "John" };
+
+let weakMap = new WeakMap();
+weakMap.set(john, "...");
+
+john = null; // overwrite the reference
+
+// john is removed from memory!
 
