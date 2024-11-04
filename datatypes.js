@@ -1263,3 +1263,15 @@ countUser(john); // count his visits
 // later john leaves us
 john = null;
 
+// We need to clean visitsCountMap when we remove users, otherwise it will grow in memory indefinitely.
+// by using WeakMap
+
+let visitsCountMap = new WeakMap(); // weakmap: user => visits count
+
+// increase the visits count
+function countUser(user) {
+  let count = visitsCountMap.get(user) || 0;
+  visitsCountMap.set(user, count + 1);
+}
+
+
