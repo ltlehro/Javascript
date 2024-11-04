@@ -1243,3 +1243,24 @@ john = null; // overwrite the reference
 
 // john is removed from memory!
 
+weakMap.set(john, "secret documents");
+// if john dies, secret documents will be destroyed automatically
+
+// example of a counting function with Map
+
+let visitsCountMap = new Map(); // map: user => visits count
+
+// increase the visits count
+function countUser(user) {
+  let count = visitsCountMap.get(user) || 0;
+  visitsCountMap.set(user, count + 1);
+}
+
+let visitsCountMap = new WeakMap(); // weakmap: user => visits count
+
+// increase the visits count
+function countUser(user) {
+  let count = visitsCountMap.get(user) || 0;
+  visitsCountMap.set(user, count + 1);
+}
+
