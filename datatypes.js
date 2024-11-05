@@ -1244,6 +1244,7 @@ john = null; // overwrite the reference
 // john is removed from memory!
 
 weakMap.set(john, "secret documents");
+
 // if john dies, secret documents will be destroyed automatically
 
 // example of a counting function with Map
@@ -1261,17 +1262,74 @@ let john = { name: "John" };
 countUser(john); // count his visits
 
 // later john leaves us
+
 john = null;
 
 // We need to clean visitsCountMap when we remove users, otherwise it will grow in memory indefinitely.
+
 // by using WeakMap
 
 let visitsCountMap = new WeakMap(); // weakmap: user => visits count
 
 // increase the visits count
+
 function countUser(user) {
   let count = visitsCountMap.get(user) || 0;
   visitsCountMap.set(user, count + 1);
 }
 
+// we can store cache results from a function, so that future calls on the same object can reuse it.
 
+// 📁 cache.js
+let cache = new Map();
+
+// calculate and remember the result
+function process(obj) {
+  if (!cache.has(obj)) {
+    let result = /* calculations of the result for */ obj;
+
+    cache.set(obj, result);
+    return result;
+  }
+
+  return cache.get(obj);
+}
+
+// Now we use process() in another file:
+
+// 📁 main.js
+let obj = {/* let's say we have an object */};
+
+let result1 = process(obj); // calculated
+
+// ...later, from another place of the code...
+let result2 = process(obj); // remembered result taken from cache
+
+// ...later, when the object is not needed any more:
+obj = null;
+
+alert(cache.size); // 1 (Ouch! The object is still in cache, taking memory!)
+
+// WeakSet behaves analogous to Sets
+
+let visitedSet = new WeakSet();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+visitedSet.add(john); // John visited us
+visitedSet.add(pete); // Then Pete
+visitedSet.add(john); // John again
+
+// visitedSet has 2 users now
+
+// check if John visited?
+alert(visitedSet.has(john)); // true
+
+// check if Mary visited?
+alert(visitedSet.has(mary)); // false
+
+john = null;
+
+// visitedSet will be cleaned automatically
