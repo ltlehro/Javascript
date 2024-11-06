@@ -883,11 +883,13 @@ alert( sumSalaries(salaries) ); // 650
 // Array destructuring
 
 // we have an array with a name and surname
+
 let arr = ["John", "Smith"]
 
 // destructuring assignment
 // sets firstName = arr[0]
 // and surname = arr[1]
+
 let [firstName, surname] = arr;
 
 alert(firstName); // John
@@ -943,6 +945,7 @@ let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
 alert(name1); // Julius
 alert(name2); // Caesar
+
 // Further items aren't assigned anywhere
 
 // using ...rest
@@ -950,8 +953,42 @@ alert(name2); // Caesar
 let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
 // rest is an array of items, starting from the 3rd one
+
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
+
+// destructuring objects
+
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+let {title, width, height} = options;
+
+alert(title);  // Menu
+alert(width);  // 100
+alert(height); // 200
+
+// setting variable name with a colon
+
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+// { sourceProperty: targetVariable }
+let {width: w, height: h, title} = options;
+
+// width -> w
+// height -> h
+// title -> title
+
+alert(title);  // Menu
+alert(w);      // 100
+alert(h);      // 200
 
 
