@@ -764,12 +764,144 @@ alert( aclean(arr) );
 
 // get an array of map.keys() in a variable and then apply array-specific methods to it, e.g. .push
 
-let map = new Map();
+let map = new Map();let visitedSet = new WeakSet();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+visitedSet.add(john); // John visited us
+visitedSet.add(pete); // Then Pete
+visitedSet.add(john); // John again
+
+// visitedSet has 2 users now
+
+// check if John visited?
+alert(visitedSet.has(john)); // true
+
+// check if Mary visited?
+alert(visitedSet.has(mary)); // false
+
+john = null;
+
+// visitedSet will be cleaned automatically
 
 map.set("name", "John");
 
 let keys = Array.from(map.keys());
 
-keys.push("more");
+keys.push("more");let visitedSet = new WeakSet();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+visitedSet.add(john); // John visited us
+visitedSet.add(pete); // Then Pete
+visitedSet.add(john); // John again
+
+// visitedSet has 2 users now
+
+// check if John visited?
+alert(visitedSet.has(john)); // true
+
+// check if Mary visited?
+alert(visitedSet.has(mary)); // false
+
+john = null;
+
+// visitedSet will be cleaned automatically
 
 alert(keys); // name, more
+
+// store unread flags
+
+let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+
+let readMessages = new WeakSet();
+
+// two messages have been read
+readMessages.add(messages[0]);
+readMessages.add(messages[1]);
+// readMessages has 2 elements
+
+// ...let's read the first message again!
+readMessages.add(messages[0]);
+// readMessages still has 2 unique elements
+
+// answer: was the message[0] read?
+alert("Read message 0: " + readMessages.has(messages[0])); // true
+
+messages.shift();let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+
+let readMessages = new WeakSet();
+
+// two messages have been read
+readMessages.add(messages[0]);
+readMessages.add(messages[1]);
+// readMessages has 2 elements
+
+// ...let's read the first message again!
+readMessages.add(messages[0]);
+// readMessages still has 2 unique elements
+
+// answer: was the message[0] read?
+alert("Read message 0: " + readMessages.has(messages[0])); // true
+
+messages.shift();
+// now readMessages has 1 element (technically memory may be cleaned later)
+// now readMessages has 1 element (technically memory may be cleaned later)
+
+// Sum the properties
+
+function sumSalaries(salaries) {
+
+  let sum = 0;
+  for (let salary of Object.values(salaries)) {
+    sum += salary;
+  }
+
+  return sum; // 650
+}
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+alert( sumSalaries(salaries) ); // 650
+
+// Array destructuring
+
+// we have an array with a name and surname
+let arr = ["John", "Smith"]
+
+// destructuring assignment
+// sets firstName = arr[0]
+// and surname = arr[1]
+let [firstName, surname] = arr;
+
+alert(firstName); // John
+alert(surname);  // Smith
+
+// using split
+
+let [firstName, surname] = "John Smith".split(' ');
+alert(firstName); // John
+alert(surname);  // Smith
+
+// Unwanted elements of the array can also be thrown away via an extra comma:
+
+// second element is not needed
+let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert( title ); // Consul
