@@ -905,3 +905,53 @@ alert(surname);  // Smith
 let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
 alert( title ); // Consul
+
+// Assign to anything at the left-side
+
+let user = {};
+[user.name, user.surname] = "John Smith".split(' ');
+
+alert(user.name); // John
+alert(user.surname); // Smith
+
+// destructuring objects
+
+let user = {
+  name: "John",
+  age: 30
+};
+
+// loop over the keys-and-values
+for (let [key, value] of Object.entries(user)) {
+  alert(`${key}:${value}`); // name:John, then age:30
+}
+
+// swapping variables trick
+
+let guest = "Jane";
+let admin = "Pete";
+
+// Let's swap the values: make guest=Pete, admin=Jane
+[guest, admin] = [admin, guest];
+
+alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
+
+// rest operator
+// Usually, if the array is longer than the list at the left, the “extra” items are omitted.
+
+let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert(name1); // Julius
+alert(name2); // Caesar
+// Further items aren't assigned anywhere
+
+// using ...rest
+
+let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// rest is an array of items, starting from the 3rd one
+alert(rest[0]); // Consul
+alert(rest[1]); // of the Roman Republic
+alert(rest.length); // 2
+
+
